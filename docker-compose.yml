@@ -1,0 +1,51 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: nightingale_grip
+      MYSQL_USER: nightingale
+      MYSQL_PASSWORD: nightingale
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -proot --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  asr:
+    build: services/asr
+    environment:
+      - WHISPER_MODEL=${WHISPER_MODEL:-base}
+      - WHISPER_MODEL_PATH=${WHISPER_MODEL_PATH:-}
+    ports:
+      - "9000:9000"
+    volumes:
+      - whisper_models:/models/whisper
+
+  app:
+    build: .
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me}
+      - JWT_EXPIRE_MIN=${JWT_EXPIRE_MIN:-4320}
+      - DATABASE_URL=mysql+pymysql://nightingale:nightingale@mysql:3306/nightingale_grip?charset=utf8mb4
+      - ASR_BASE_URL=${ASR_BASE_URL:-http://asr:9000}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://ollama:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2:4b}
+      - USE_LLM_TRIAGE=${USE_LLM_TRIAGE:-true}
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      asr:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  whisper_models:

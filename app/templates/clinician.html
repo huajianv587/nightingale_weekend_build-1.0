@@ -1,0 +1,29 @@
+
+<!doctype html>
+<html><head>
+  <meta charset="utf-8"/>
+  <title>Nightingale Clinician</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+<div class="container">
+  <div class="left">
+    <h2>Clinician — Triage Queue</h2>
+    <div id="auth">
+      <input id="email" value="clinician@demo.example.com" placeholder="email"/>
+      <input id="password" value="password" type="password" placeholder="password"/>
+      <button onclick="login()">Login</button>
+      <span id="authStatus"></span>
+    </div>
+    <div id="tickets" class="tickets"></div>
+  </div>
+  <div class="right">
+    <h3>Ticket Detail</h3>
+    <pre id="ticketDetail" class="profile"></pre>
+    <textarea id="replyText" rows="5" placeholder="Clinician reply..."></textarea>
+    <button onclick="sendReply()">Send Reply</button>
+    <div id="replyStatus"></div>
+  </div>
+</div>
+<script src="/static/clinician.js?v=20260201"></script>
+</body></html>

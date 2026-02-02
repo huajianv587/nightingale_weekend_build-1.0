@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html><head>
+  <meta charset="utf-8"/>
+  <title>Nightingale Patient</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+<div class="container">
+  <div class="left">
+    <h2>Patient — 1:1 Chat</h2>
+    <div id="auth">
+      <input id="email" value="patient@demo.example.com" placeholder="email"/>
+      <input id="password" value="password" type="password" placeholder="password"/>
+      <button onclick="login()">Login</button>
+      <span id="authStatus"></span>
+    </div>
+    <div id="chat" class="chat"></div>
+    <div class="composer">
+      <input id="text" placeholder="Type message..."/>
+      <button onclick="sendText()">Send</button>
+    </div>
+    <div class="composer">
+      <input id="audio" type="file" accept="audio/*"/>
+      <button onclick="sendAudio()">Send Audio</button>
+    </div>
+    <div id="escalateBox" class="escalate hidden">
+      <div><b>Escalation required.</b></div>
+      <div>Sent to clinic queue. Wait for clinician reply.</div>
+      <div id="ticketInfo"></div>
+    </div>
+  </div>
+  <div class="right">
+    <h3>Living Patient Profile</h3>
+    <pre id="profile" class="profile"></pre>
+  </div>
+</div>
+<script src="/static/patient.js?v=20260201"></script>
+</body></html>

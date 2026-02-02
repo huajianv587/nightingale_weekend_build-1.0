@@ -1,0 +1,7 @@
+
+Libraries:
+FastAPI (MIT), Uvicorn (BSD-3), SQLAlchemy (MIT), PyMySQL (MIT), Pydantic (MIT),
+Jinja2 (BSD-3), httpx (BSD-3), PyJWT (MIT), pytest (MIT).
+
+Models (bundled via Docker volumes / image caches, not in repo):
+Whisper / Faster-Whisper weights, Qwen2 4B via Ollama.

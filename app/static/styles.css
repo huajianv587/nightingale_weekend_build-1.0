@@ -1,0 +1,19 @@
+
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0}
+.container{display:flex;height:100vh}
+.left{flex:2;padding:16px;border-right:1px solid #ddd;overflow:auto}
+.right{flex:1;padding:16px;overflow:auto}
+.chat{border:1px solid #ddd;padding:12px;height:55vh;overflow:auto;background:#fafafa}
+.msg{margin:8px 0;padding:8px 10px;border-radius:10px;max-width:80%}
+.msg.patient{background:#e8f0fe;margin-left:auto}
+.msg.assistant{background:#fff;border:1px solid #eee}
+.msg.clinician{background:#e6ffed;border:1px solid #b7f5c0}
+.meta{font-size:12px;opacity:.75;margin-top:4px}
+.composer{display:flex;gap:8px;margin-top:10px}
+.composer input{flex:1;padding:8px}
+.tickets{border:1px solid #ddd;min-height:60vh;padding:10px;background:#fafafa}
+.ticket{padding:10px;border:1px solid #eee;background:#fff;margin:10px 0;cursor:pointer}
+.profile{border:1px solid #ddd;padding:10px;background:#fafafa;white-space:pre-wrap}
+.escalate{margin-top:10px;padding:10px;border:1px solid #f0c36d;background:#fff8e1}
+.hidden{display:none}
+textarea{width:100%;padding:8px}
